@@ -23,64 +23,39 @@ Plot the Signals: Use Matplotlib to plot the message signal, carrier signal, and
 Program:
 
 ```
-clc;
-clear;
+import numpy as np
+import matplotlib.pyplot as plt
 
-// Parameters
-Ac = 7.4;          // Carrier amplitude
-Am = 3.7;          // Message amplitude
-Fc = 1660;       // Carrier frequency (Hz)
-Fm = 166;        // Message frequency (Hz)
-Fs = 16600;      // Sampling frequency (Hz)
 
-// Time axis
-t = 0:1/Fs:2/Fm;
+Am=6.7
+fm=528
+fs=52800
+t=np.arange(0,2/fm,1/fs)
+m=Am*np.cos(2*np.pi*fm*t)
+plt.subplot(3,1,1)
+plt.plot(t,m)
 
-// Message signal
-m = Am * sin(2*%pi*Fm*t);
+Ac=13.4
+fc=5280
+c=Ac*np.cos(2*np.pi*fc*t)
+plt.subplot(3,1,2)
+plt.plot(t,c)
 
-// Carrier signal
-c = Ac * sin(2*%pi*Fc*t);
+am=(Ac+m)*np.cos(2*np.pi*fc*t)
+plt.subplot(3,1,3)
+plt.plot(t,am)
+plt.show()
 
-// AM modulation
-am_signal = (Ac + m) .* sin(2*%pi*Fc*t);
-
-// Plotting
-subplot(4,1,1);
-plot(t, m);
-title("Message Signal");
-xgrid();
-
-subplot(4,1,2);
-plot(t, c);
-title("Carrier Signal");
-xgrid();
-
-subplot(4,1,3);
-plot(t, am_signal);
-title("AM Modulated Signal");
-xgrid();
-
-// AM Demodulation using envelope detector
-demodulated_signal = abs(hilbert(am_signal)) - Ac;
-
-subplot(4,1,4);
-plot(t, demodulated_signal);
-title("Demodulated Signal");
-xgrid();
 
 ```
 Output:
 
-![WhatsApp Image 2026-03-20 at 9 07 28 AM](https://github.com/user-attachments/assets/0f116eff-b83f-4660-8d73-8e2ba340bd6e)
+<img width="1198" height="704" alt="image" src="https://github.com/user-attachments/assets/8f3a9c12-0ba3-4255-be7a-62b899bb7997" />
+
 
 Tabulation:
 
 <img width="821" height="580" alt="image" src="https://github.com/user-attachments/assets/bf901d51-1f67-41f7-8435-2095b266a88f" />
-
-Calculation:
-
-<img width="770" height="686" alt="image" src="https://github.com/user-attachments/assets/f745e6be-4560-40ac-9d14-b726193e0939" />
 
 
 Result:
