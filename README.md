@@ -27,16 +27,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-Am=6.7
-fm=528
-fs=52800
+Am=3.7
+fm=166
+fs=16600
 t=np.arange(0,2/fm,1/fs)
 m=Am*np.cos(2*np.pi*fm*t)
 plt.subplot(3,1,1)
 plt.plot(t,m)
 
-Ac=13.4
-fc=5280
+Ac=7.4
+fc=1660
 c=Ac*np.cos(2*np.pi*fc*t)
 plt.subplot(3,1,2)
 plt.plot(t,c)
